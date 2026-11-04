@@ -84,10 +84,10 @@ function Navbar({ className }: { className?: string }) {
             Inicio
           </Link>
           <Link
-            href="/paltasys"
+            href="/andexmarket"
             className="text-neutral-600 dark:text-neutral-300 text-sm font-medium"
           >
-            Palta Sys
+            AndexMarket
           </Link>
           <Link
             href="/totems"
@@ -150,11 +150,11 @@ function Navbar({ className }: { className?: string }) {
             Inicio
           </Link>
           <Link
-            href="/paltasys"
+            href="/andexmarket"
             className="text-neutral-600 dark:text-neutral-300 text-sm font-medium py-2"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Palta Sys
+            AndexMarket
           </Link>
           <Link
             href="/totems"
@@ -184,3 +184,4 @@ function Navbar({ className }: { className?: string }) {
 }
 
 export default Navbar;
+

@@ -1,32 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Providers from "./providers";
-import MainNavbar from "@/components/layouts/MainNavbar";
-
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Andextech",
-  description: "Brindamos soluciones tecnológicas para tu negocio",
+  metadataBase: new URL("https://www.andex.tech"), icons: { icon: "/icon.svg" },
+  title: { default: "Andex — Tecnología que mueve tu negocio", template: "%s | Andex" },
+  description: "Software y hardware que trabajan con vos. Conocé AndexMarket, nuestro sistema de ventas, y los tótems Andex diseñados para tu negocio.",
+  openGraph: { title: "Andex — Tecnología que mueve tu negocio", description: "AndexMarket y tótems a medida. Desde Mendoza, para lo que viene.", locale: "es_AR", type: "website" },
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-background min-h-screen`}>
-        <Providers>
-          <header className="h-[65px] z-50 absolute w-full">
-            <MainNavbar />
-          </header>
-          <main className="overflow-x-hidden">{children}</main>
-          <footer></footer>
-        </Providers>
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="es"><body>{children}</body></html>;
 }
+
