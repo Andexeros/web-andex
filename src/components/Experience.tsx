@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ArrowRight, Plus, Minus, Check, Menu, X, Play, Scale, ShoppingBag, Package, Users, Monitor, ChevronDown, MoveUpRight } from "lucide-react";
+import History from "./History";
+import BusinessDashboard from "./BusinessDashboard";
+import TotemRender from "./TotemRender";
+import Testimonials from "./Testimonials";
+import { ArrowUpRight, ArrowRight, Plus, Minus, Check, Menu, X, Play, Scale, ShoppingBag, Package, Users, Monitor, ChevronDown, Sparkles, BarChart3, ShoppingCart } from "lucide-react";
 
 const contact = (message: string) => `https://wa.me/5492604017239?text=${encodeURIComponent(message)}`;
 const demoLink = contact("Hola Andex, me gustaría conocer AndexMarket y coordinar una demo.");
@@ -15,6 +19,7 @@ const totems = [
 ];
 
 function Mark({ market = false }: { market?: boolean }) {
+  if (!market) return <Image className="original-brand" src="/logo-andextech.png" alt="Andex Tech" width={1491} height={551} priority />;
   return <span className={`brand ${market ? "brand-market" : ""}`}><span className="brand-symbol" aria-hidden="true"><i /><i /></span><span>andex{market ? <em>market</em> : <span className="brand-dot">®</span>}</span></span>;
 }
 
@@ -73,13 +78,13 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
     <main id="contenido">
       <section className={`hero ${mode === "totems" ? "hero-totems" : ""}`}>
         <div className="hero-grid" aria-hidden="true" /><div className="hero-inner">
-          <div className="hero-copy"><div className="eyebrow"><span className="live-dot" /> {mode === "home" ? "TECNOLOGÍA CON LOS PIES EN TU NEGOCIO" : mode === "market" ? "ANDEXMARKET / SOFTWARE DE GESTIÓN" : "ANDEX / HARDWARE A MEDIDA"}</div>
-            <h1>{mode === "home" ? <>Menos vueltas.<br />Más <span className="accent-serif">futuro.</span></> : mode === "market" ? <>Vos vendés.<br /><span className="accent-serif">Andex hace<br />el resto.</span></> : <>Una pantalla.<br /><span className="accent-serif">Infinitas<br />posibilidades.</span></>}</h1>
-            <p>{mode === "home" ? "Creamos software y hardware que simplifican tu día. Para que puedas enfocarte en lo que mejor hacés: hacer crecer tu negocio." : mode === "market" ? "Ventas, balanzas, stock y cuentas corrientes. Todo conectado, todo más simple. Tu negocio, claro." : "Tótems diseñados para conectar personas, espacios y negocios. Una experiencia a la medida de tu proyecto."}</p>
+          <div className="hero-copy"><div className="eyebrow"><span className="live-dot" /> {mode === "home" ? "ANDEX TECH / SOFTWARE + HARDWARE" : mode === "market" ? "ANDEXMARKET / SOFTWARE DE GESTIÓN" : "ANDEX / HARDWARE A MEDIDA"}</div>
+            <h1>{mode === "home" ? <>Inteligencia que<br /><span className="accent-serif">transforma.</span></> : mode === "market" ? <>Vos vendés.<br /><span className="accent-serif">Andex hace<br />el resto.</span></> : <>Una pantalla.<br /><span className="accent-serif">Infinitas<br />posibilidades.</span></>}</h1>
+            <p>{mode === "home" ? "Diseñamos tecnología para llevar tu negocio más lejos. Software, hardware e innovación que se convierten en soluciones reales." : mode === "market" ? "Ventas, balanzas, stock y cuentas corrientes. Todo conectado, todo más simple. Tu negocio, claro." : "Tótems diseñados para conectar personas, espacios y negocios. Una experiencia a la medida de tu proyecto."}</p>
             <div className="hero-actions"><a href={mode === "totems" ? "#totems" : "#market"} className="button lime">{mode === "totems" ? "Explorar tótems" : "Descubrí AndexMarket"}<ArrowUpRight size={19} /></a><a href="#contacto" className="text-link">Contanos tu idea <ArrowRight size={17} /></a></div>
             <div className="hero-note"><span className="mini-cross">✳</span> Hecho en Mendoza. Pensado para ir más lejos.</div>
           </div>
-          <div className="hero-visual">{mode === "totems" ? <div className="hero-totem-image"><Image src="/totem2.jpg" alt="Tótem Andex para pedidos gastronómicos" fill priority sizes="(max-width: 800px) 90vw, 45vw" /><span className="image-label">DISEÑADO ALREDEDOR DE VOS ↗</span></div> : <>
+          <div className="hero-visual">{mode === "totems" ? <TotemRender /> : <>
             <div className="orbital orbit-one" /><div className="orbital orbit-two" /><span className="orbit-caption">SOFTWARE + HARDWARE + VOS</span>
             <div className="floating-demo"><SalesDemo compact /></div>
             <div className="floating-badge badge-stock"><span className="badge-icon"><Package size={20} /></span><div><strong>Stock al día</strong><small>Cada venta cuenta.</small></div><Check size={15} /></div>
@@ -93,11 +98,11 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
 
       {mode !== "totems" && <section className="market-section section-pad" id="market">
         <div className="section-heading reveal"><div><div className="eyebrow dark">01 / ANDEXMARKET</div><h2>Tu negocio,<br /><span className="serif">en sus mejores manos.</span></h2></div><div className="section-intro"><p>Las tuyas. Con herramientas que te sacan trabajo de encima y te devuelven claridad.</p><Link className="under-link" href="/andexmarket">Conocé AndexMarket <ArrowUpRight size={18} /></Link></div></div>
-        <div className="market-grid"><div className="market-demo-wrap reveal"><div className="demo-label"><span className="live-dot" /> PROBÁ LA EXPERIENCIA</div><SalesDemo /><div className="demo-caption"><span>Menos pasos. Más simple.</span><span>↗</span></div></div>
+        <div className="market-grid"><div className="market-dashboard-wrap reveal"><BusinessDashboard /></div>
         <div className="market-features reveal">{[
-          { icon: ShoppingBag, name: "Vendé sin frenar.", text: "Abrí una orden, agregá productos y registrá el cobro desde un mismo lugar." },
-          { icon: Scale, name: "El peso entra solo.", text: "Conectá una balanza compatible y llevá su lectura directamente a la venta." },
-          { icon: Package, name: "Tu stock, siempre presente.", text: "Cada venta actualiza las existencias. Conocé lo que tenés sin perder el ritmo." },
+          { icon: BarChart3, name: "Tu negocio, en perspectiva.", text: "Visualizá ventas, operaciones y evolución del negocio. Convertí la información de cada día en mejores decisiones." },
+          { icon: Sparkles, name: "Actualizá precios con IA.", text: "Simplificá la revisión de precios con asistencia inteligente. Revisá los cambios y mantené el control antes de aplicarlos." },
+          { icon: ShoppingCart, name: "Compras más inteligentes.", text: "Organizá la reposición y las compras de tu comercio con una visión clara de lo que necesitás." },
           { icon: Users, name: "Cuentas claras.", text: "Consultá las cuentas corrientes y mantené a la vista los saldos de tus clientes." },
         ].map((feature, i) => <div className="feature" key={feature.name}><span className="feature-icon"><feature.icon size={22} strokeWidth={1.5} /></span><div><small>0{i + 1}</small><h3>{feature.name}</h3><p>{feature.text}</p></div></div>)}<a href={demoLink} target="_blank" rel="noopener noreferrer" className="button forest">Quiero una demo <ArrowUpRight size={18} /></a></div></div>
         <div className="video-strip reveal"><div><span className="video-icon"><Play size={21} /></span><div><h3>De la primera venta a todo bajo control.</h3><p>Mirá AndexMarket en acción.</p></div></div><button ref={playButton} className="under-link" onClick={() => setVideoOpen(true)}>Reproducir video <ArrowUpRight size={18} /></button></div>
@@ -108,9 +113,9 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
         <div className="totem-panel" id="totem-panel" role="tabpanel" aria-labelledby={`tab-${selected}`}><div className="totem-photo" key={current.image}><Image src={current.image} alt={`Propuesta de tótem Andex para ${current.name.toLowerCase()}`} fill sizes="(max-width: 800px) 95vw, 50vw" /><span className="photo-caption">ANDEX HARDWARE / IMAGEN DE REFERENCIA</span></div><div className="totem-description" key={current.title}><span className="totem-index">0{selected + 1}<span> / 04</span></span><Monitor size={34} strokeWidth={1} /><h3>{current.title}</h3><p>{current.description}</p><div className="tags">{current.tags.map(tag => <span key={tag}>{tag}</span>)}</div><a className="button lime" href={contact(`Hola Andex, me interesa un tótem para ${current.name.toLowerCase()}.`)} target="_blank" rel="noopener noreferrer">Diseñemos el tuyo <ArrowUpRight size={18} /></a><small className="custom-note">Cada proyecto se configura a medida. Consultanos por opciones e integraciones.</small></div></div>
       </section>
 
-      <section className="about-section section-pad" id="nosotros"><div className="about-grid"><div className="reveal"><div className="eyebrow dark">03 / SOMOS ANDEX</div><h2>La tecnología avanza.<br /><span className="serif">Nosotros, con vos.</span></h2><p>No creemos en complicar lo simple. Unimos software y hardware para resolver desafíos reales, con una mirada cercana a cada negocio.</p><a className="under-link" href="#contacto">Conversemos sobre el tuyo <ArrowUpRight size={18} /></a></div><div className="about-art reveal" aria-hidden="true"><span className="art-axis">ORIGEN / MENDOZA, ARGENTINA</span><div className="mountain mountain-back" /><div className="mountain mountain-front" /><div className="art-sun" /><span className="art-caption">Una mirada local.<br /><b>Una visión que crece.</b></span><MoveUpRight className="art-arrow" size={32} /></div></div>
-        <div className="timeline reveal"><div><span>2023</span><h3>El primer impulso.</h3><p>Ganadores de BP Innova y parte del programa de preaceleración de la Incubadora UNCUYO.</p></div><div><span>2024</span><h3>Ideas que toman forma.</h3><p>Finalistas de Naves Argentina y Emprender, de la Cámara Joven de San Rafael.</p></div><div><span>HOY</span><h3>El próximo paso, juntos.</h3><p>AndexMarket y soluciones de hardware a medida para acompañar a más negocios.</p></div></div>
-      </section>
+      <Testimonials />
+
+      <History />
 
       <section className="faq-section section-pad"><div><div className="eyebrow dark">TODO UN POCO MÁS CLARO</div><h2>Antes de<br /><span className="serif">dar el paso.</span></h2></div><div className="faq-list">{[
         ["¿Cómo puedo probar AndexMarket?", "Escribinos para coordinar una demo. Te mostramos el flujo de ventas y revisamos juntos cómo se adapta a la operación de tu comercio."],
@@ -125,3 +130,4 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
     <dialog ref={dialog} className="video-dialog" onCancel={closeVideo} onClick={event => { if (event.target === event.currentTarget) closeVideo(); }}><div className="video-dialog-content"><button className="close-video" aria-label="Cerrar video" onClick={closeVideo}><X /></button><h2>AndexMarket en acción</h2>{videoOpen && <video ref={video} controls autoPlay playsInline preload="metadata" src="/media/andexmarket-demo.mp4"><track kind="captions" src="/media/andexmarket-es.vtt" srcLang="es" label="Español" /></video>}<p>Ventas, balanza, stock y cuentas corrientes. Tu negocio, claro.</p></div></dialog>
   </>;
 }
+
