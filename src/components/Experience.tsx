@@ -7,7 +7,7 @@ import History from "./History";
 import BusinessDashboard from "./BusinessDashboard";
 import TotemRender from "./TotemRender";
 import Testimonials from "./Testimonials";
-import { ArrowUpRight, ArrowRight, Plus, Minus, Check, Menu, X, Play, Scale, ShoppingBag, Package, Users, Monitor, ChevronDown, Sparkles, BarChart3, ShoppingCart } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Plus, Minus, Check, Menu, X, Play, Scale, ShoppingBag, Package, Users, Monitor, ChevronDown, Leaf, Cherry, Sparkles, BarChart3, ShoppingCart } from "lucide-react";
 
 const contact = (message: string) => `https://wa.me/5492604017239?text=${encodeURIComponent(message)}`;
 const demoLink = contact("Hola Andex, me gustaría conocer AndexMarket y coordinar una demo.");
@@ -30,13 +30,14 @@ function SalesDemo({ compact = false }: { compact?: boolean }) {
   return <div className={`sales-demo ${compact ? "compact" : ""}`}>
     <div className="demo-top"><Mark market /><span><span className="live-dot" /> Punto de venta</span></div>
     <div className="demo-content"><div className="demo-heading"><div><small>MI COMERCIO</small><h3>Todo listo para vender.</h3></div><span className="demo-avatar">A</span></div>
-      <div className="demo-search"><ShoppingBag size={16} /> Buscar un producto <span>⌘ K</span></div>
+      <div className="demo-search"><ShoppingBag size={16} /> Tu operación, en un solo lugar <span>01</span></div>
       <div className="order-head"><span>Orden 01</span><span><Scale size={13} /> Balanza conectada</span></div>
-      <div className="product-row"><span className="fruit banana" aria-hidden="true">🍌</span><div><b>Banana Ecuador</b><small>$2.400 / kg</small></div><span className="quantity">{quantity},000 kg</span><b>${(quantity * 2400).toLocaleString("es-AR")}</b></div>
-      <div className="product-row"><span className="fruit tomato" aria-hidden="true">🍅</span><div><b>Tomate redondo</b><small>$2.890 / kg</small></div><span className="quantity">1,000 kg</span><b>$2.890</b></div>
+      <div className="product-row"><span className="fruit banana" aria-hidden="true"><Leaf size={18} strokeWidth={1.4} /></span><div><b>Banana Ecuador</b><small>$2.400 / kg</small></div><span className="quantity">{quantity},000 kg</span><b>${(quantity * 2400).toLocaleString("es-AR")}</b></div>
+      <div className="product-row"><span className="fruit tomato" aria-hidden="true"><Cherry size={18} strokeWidth={1.4} /></span><div><b>Tomate redondo</b><small>$2.890 / kg</small></div><span className="quantity">1,000 kg</span><b>$2.890</b></div>
       {!compact && <div className="demo-controls"><span>Probá cambiar el peso de las bananas</span><button aria-label="Quitar un kilo" disabled={quantity === 1} onClick={() => { setQuantity(Math.max(1, quantity - 1)); setPaid(false); }}><Minus size={16} /></button><button aria-label="Agregar un kilo" disabled={quantity === 9} onClick={() => { setQuantity(Math.min(9, quantity + 1)); setPaid(false); }}><Plus size={16} /></button></div>}
       <div className="demo-total"><span>Total de la venta<strong>${total}</strong></span><span>2 productos<br /><small>Pesos argentinos</small></span></div>
       <button className="demo-pay" onClick={() => setPaid(!paid)}>{paid ? <><Check size={18} /> Venta de ejemplo cobrada · Reiniciar</> : <>Simular cobro <ArrowRight size={18} /></>}</button>
+      <div className="demo-integrations"><span><Package size={13} /> Stock sincronizado</span><span><Scale size={13} /> Balanza integrada</span></div>
       <div className="demo-status" role="status">{paid ? "✓ Stock de ejemplo actualizado. Todo en orden." : "Demostración ilustrativa · Sin operaciones reales"}</div>
     </div>
   </div>;
@@ -82,13 +83,13 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
             <h1>{mode === "home" ? <>Inteligencia que<br /><span className="accent-serif">transforma.</span></> : mode === "market" ? <>Vos vendés.<br /><span className="accent-serif">Andex hace<br />el resto.</span></> : <>Una pantalla.<br /><span className="accent-serif">Infinitas<br />posibilidades.</span></>}</h1>
             <p>{mode === "home" ? "Diseñamos tecnología para llevar tu negocio más lejos. Software, hardware e innovación que se convierten en soluciones reales." : mode === "market" ? "Ventas, balanzas, stock y cuentas corrientes. Todo conectado, todo más simple. Tu negocio, claro." : "Tótems diseñados para conectar personas, espacios y negocios. Una experiencia a la medida de tu proyecto."}</p>
             <div className="hero-actions"><a href={mode === "totems" ? "#totems" : "#market"} className="button lime">{mode === "totems" ? "Explorar tótems" : "Descubrí AndexMarket"}<ArrowUpRight size={19} /></a><a href="#contacto" className="text-link">Contanos tu idea <ArrowRight size={17} /></a></div>
-            <div className="hero-note"><span className="mini-cross">✳</span> Hecho en Mendoza. Pensado para ir más lejos.</div>
+
           </div>
           <div className="hero-visual">{mode === "totems" ? <TotemRender /> : <>
             <div className="orbital orbit-one" /><div className="orbital orbit-two" /><span className="orbit-caption">SOFTWARE + HARDWARE + VOS</span>
             <div className="floating-demo"><SalesDemo compact /></div>
-            <div className="floating-badge badge-stock"><span className="badge-icon"><Package size={20} /></span><div><strong>Stock al día</strong><small>Cada venta cuenta.</small></div><Check size={15} /></div>
-            <div className="floating-badge badge-scale"><Scale size={19} /><span>Balanza + ventas<br /><strong>Una misma experiencia.</strong></span></div>
+
+
             <span className="visual-number">01 — EL PRÓXIMO PASO</span>
           </>}</div>
         </div><div className="hero-bottom"><span>INTELIGENCIA QUE SE VUELVE SIMPLE.</span><a href={mode === "totems" ? "#totems" : "#market"}>SEGUÍ EXPLORANDO <ChevronDown size={15} /></a><span>SCROLL TO DISCOVER ↓</span></div>
@@ -97,7 +98,7 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
       <div className="ticker" aria-label="Software, hardware y acompañamiento"><div><span>Ideas que funcionan.</span><i>✳</i><span>Negocios que avanzan.</span><i>✳</i><span>Tecnología cercana.</span><i>✳</i><span>Ideas que funcionan.</span><i>✳</i><span>Negocios que avanzan.</span><i>✳</i></div></div>
 
       {mode !== "totems" && <section className="market-section section-pad" id="market">
-        <div className="section-heading reveal"><div><div className="eyebrow dark">01 / ANDEXMARKET</div><h2>Tu negocio,<br /><span className="serif">en sus mejores manos.</span></h2></div><div className="section-intro"><p>Las tuyas. Con herramientas que te sacan trabajo de encima y te devuelven claridad.</p><Link className="under-link" href="/andexmarket">Conocé AndexMarket <ArrowUpRight size={18} /></Link></div></div>
+        <div className="section-heading reveal"><div><div className="eyebrow dark">01 / ANDEXMARKET</div><h2>Tu negocio,<br /><span className="serif">en sus mejores manos.</span></h2></div><div className="section-intro"><p>Las tuyas. Con herramientas que te sacan trabajo de encima y te devuelven claridad.</p></div></div>
         <div className="market-grid"><div className="market-dashboard-wrap reveal"><BusinessDashboard /></div>
         <div className="market-features reveal">{[
           { icon: BarChart3, name: "Tu negocio, en perspectiva.", text: "Visualizá ventas, operaciones y evolución del negocio. Convertí la información de cada día en mejores decisiones." },
@@ -130,4 +131,3 @@ export default function Experience({ mode }: { mode: "home" | "market" | "totems
     <dialog ref={dialog} className="video-dialog" onCancel={closeVideo} onClick={event => { if (event.target === event.currentTarget) closeVideo(); }}><div className="video-dialog-content"><button className="close-video" aria-label="Cerrar video" onClick={closeVideo}><X /></button><h2>AndexMarket en acción</h2>{videoOpen && <video ref={video} controls autoPlay playsInline preload="metadata" src="/media/andexmarket-demo.mp4"><track kind="captions" src="/media/andexmarket-es.vtt" srcLang="es" label="Español" /></video>}<p>Ventas, balanza, stock y cuentas corrientes. Tu negocio, claro.</p></div></dialog>
   </>;
 }
-
